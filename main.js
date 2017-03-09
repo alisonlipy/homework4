@@ -7,10 +7,10 @@ function randomValueFromArray(array){
   return array[random];
 }
 
-var storyText = 'It was 94 farenheit outside, so :insertx: went for a walk. When they got to :inserty:, they stared in horror for a few moments, then :insertz:. Bob saw the whole thing, but he was not surprised — :insertx: weighs 300 pounds, and it was a hot day.';
-var insertX = ['Willy the Goblin','Big Daddy','Father Christmas'];
-var insertY = ['the soup kitchen','Disneyland','the White House'];
-var insertZ = ['spontaneously combusted','melted into a puddle on the sidewalk','turned into a slug and crawled away'];
+var storyText = '從前有個人, 他常自稱 :insertx:。有一天，他走在街上，碰上他的 :inserty:。他走上前搭訕，並說了一個 :insertz:「西餐廳餐牌上面，有邊種食物係由三個姓氏組成？」:insertx:覺得對方答不上，自己道出答案：「羅宋湯。」';
+var insertX = ['天之驕子','聰明人','天才'];
+var insertY = ['小學同學','暗戀對象','初戀情人'];
+var insertZ = ['爛Gag','無聊笑話','IQ題'];
 
 randomize.addEventListener('click', result);
 
