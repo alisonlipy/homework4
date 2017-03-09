@@ -1,47 +1,43 @@
-// functionality for showing/hiding the comments section
+var customName = document.getElementById('customname');
+var randomize = document.querySelector('.randomize');
+var story = document.querySelector('.story');
 
-var showHideBtn = document.querySelector('.show-hide');
-var commentWrapper = document.querySelector('.comment-wrapper');
+function randomValueFromArray(array){
+  var random = Math.floor(Math.random()*array.length)
+  return array[random];
+}
 
-commentWrapper.style.display = 'none';
+var storyText = 'It was 94 farenheit outside, so :insertx: went for a walk. When they got to :inserty:, they stared in horror for a few moments, then :insertz:. Bob saw the whole thing, but he was not surprised — :insertx: weighs 300 pounds, and it was a hot day.';
+var insertX = ['Willy the Goblin','Big Daddy','Father Christmas'];
+var insertY = ['the soup kitchen','Disneyland','the White House'];
+var insertZ = ['spontaneously combusted','melted into a puddle on the sidewalk','turned into a slug and crawled away'];
 
-showHideBtn.onclick = function() {
-  var showHideText = showHideBtn.textContent;
-  if(showHideText === 'Show comments') {
-    showHideBtn.textContent = 'Hide comments';
-    commentWrapper.style.display = 'block';
-  } else {
-    showHideBtn.textContent = 'Show comments';
-    commentWrapper.style.display = 'none';
+randomize.addEventListener('click', result);
+
+function result() {
+  var newStory = storyText; 
+
+  var xItem = randomValueFromArray(insertX); 
+  var yItem = randomValueFromArray(insertY);
+  var zItem = randomValueFromArray(insertZ);
+
+  newStory = newStory.replace(':insertx:',xItem); 
+  newStory = newStory.replace(':insertx:',xItem);
+  newStory = newStory.replace(':inserty:',yItem);
+  newStory = newStory.replace(':insertz:',zItem);
+  
+  if(customName.value != '') {
+    var name = customName.value;
+    newStory = newStory.replace('Bob',name); 
   }
-};
 
-// functionality for adding a new comment via the comments form
+  if(document.getElementById("uk").checked) {
+    var weight = Math.round(300*0.0714286) + ' stone'; 
+    var temperature =  Math.round((94-32) * 5 / 9) + ' centigrade';
+    newStory = newStory.replace('94 farenheit',temperature); 
+    newStory = newStory.replace('300 pounds',weight);
+  }
 
-var form = document.querySelector('.comment-form');
-var nameField = document.querySelector('#name');
-var commentField = document.querySelector('#comment');
-var list = document.querySelector('.comment-container');
-
-form.onsubmit = function(e) {
-  e.preventDefault();
-  submitComment();
-};
-
-function submitComment() {
-  var listItem = document.createElement('li');
-  var namePara = document.createElement('p');
-  var commentPara = document.createElement('p');
-  var nameValue = nameField.value;
-  var commentValue = commentField.value;
-
-  namePara.textContent = nameValue;
-  commentPara.textContent = commentValue;
-
-  list.appendChild(listItem);
-  listItem.appendChild(namePara);
-  listItem.appendChild(commentPara);
-
-  nameField.value = '';
-  commentField.value = '';
+  story.textContent = newStory; 
+  story.style.visibility = 'visible';
 }
